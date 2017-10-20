@@ -51,9 +51,9 @@ function handlePost(request, response)
   text = app.getRawInput() || '';
 
   query = {};
-  query.key='trnsl.1.1.20171018T204650Z.b6985ea253719533.8ae17f2ece97a6d46e97e180abe2bd17122ed163';
-  query.lang='en-fr';
-  query.format='plain';
+  query.key = process.env.YANDEX;
+  query.lang = 'en-fr';
+  query.format = 'plain';
   query.text = text;
 
   get = {};
