@@ -66,32 +66,32 @@ function handlePost(request, response)
   cb.request = request;
   cb.response = response;
 
-  webRequest(get, cb.to(requestCompletes));
+  webRequest(get, cb.to(translateCompletes));
 
   return cb.getPromise();
  }
 
- function requestCompletes(error, response, body, cb)
+ function translateCompletes(error, response, body, cb)
  {
-  var ok, text, card, rich;
+  var ok, foreign, card, rich;
 
   if ( error )
   {
    ok = false;
-   text = error;
+   foreign = error;
   }
 
   else if ( !body )
   {
    ok = false;
-   text = 'The translator returned nothing';
+   foreign = 'The translator returned nothing';
   }
 
   else
   {
    ok = true;
    body = JSON.parse(body);
-   text = body.text[0];
+   foreign = body.text[0];
   }
 
   // Translation fails -
@@ -100,7 +100,7 @@ function handlePost(request, response)
   if ( !ok )
   {
    cb.app.ask(cb.text);
-   console.log(text);
+   console.log(foreign);
   }
 
   // Translation succeeds -
@@ -111,7 +111,7 @@ function handlePost(request, response)
    card = cb.app.buildBasicCard();
    card.setTitle('Translating')
        .setSubtitle('To French')
-       .setBodyText(text)
+       .setBodyText(foreign)
        .addButton('Yandex', 'http://translate.yandex.com')
        .setImage('https://image.ibb.co/ggzUO6/translate.png',
                  'accessibilty text goes here',
@@ -124,7 +124,8 @@ function handlePost(request, response)
    cb.app.ask(rich);
   }
 
-  cb.fulfill(text);
+  cb.fulfill(foreign);
+  cb = null;
  }
 }
 
@@ -163,6 +164,6 @@ expressApp.get('/about', handleGetAbout);
 
 expressApp.set('port', port);
 expressApp.listen(port);
-console.log('Parrot Assistant listening on port %s', port);
+console.log('French parrot Assistant listening on port %s', port);
 
 module.exports = expressApp;
