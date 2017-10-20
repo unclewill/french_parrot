@@ -1,0 +1,25 @@
+{
+  "name": "parrot",
+  "description": "simple assistant echo app",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Uncle Will",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "scripts": {
+    "start": "node french_app.js",
+    "monitor": "nodemon app.js",
+    "test": "npm run lint"
+  },
+  "dependencies": {
+    "actions-on-google": "^1.0.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "bluebird": "^3.5.0",
+    "iconv-lite": "^0.4.15",
+    "inquirer": "^3.0.1",
+    "ejs": "~2.3.3",
+    "request": "^2.79.0"
+  }
+}

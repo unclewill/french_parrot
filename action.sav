@@ -1,0 +1,23 @@
+{
+ "actions":
+ [
+  {
+   "description": "Default Welcome Intent",
+   "name": "MAIN",
+   "fulfillment": { "conversationName": "convo" },
+   "intent":
+   {
+    "name": "actions.intent.MAIN"
+   }
+  }
+ ],
+ "conversations":
+ {
+  "convo":
+  {
+   "name": "convo",
+   "url": "https://bustime-assistant-google.herokuapp.com",
+   "fulfillmentApiVersion": 2
+  }
+ }
+}

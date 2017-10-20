@@ -1,0 +1,56 @@
+{
+ "actions":
+ [
+  {
+   "description": "Default Welcome Intent",
+   "name": "MAIN",
+   "fulfillment": { "conversationName": "convo" },
+   "intent":
+   {
+    "name": "actions.intent.MAIN"
+   }
+  },
+  {
+   "description": "French Query",
+   "name": "FRENCH_QUERY",
+   "fulfillment": { "conversationName": "convo" },
+   "intent":
+   {
+    "name": "www.whereismybus.xyz.FRENCH_QUERY",
+    "parameters": [ {"name": "phrase", "type": "SchemaOrg_Text"}
+                  ],
+    "trigger": { "queryPatterns":
+                  [
+                   "translate $SchemaOrg_Text:phrase to french"
+                  ]
+               }
+   }
+  },
+  {
+   "description": "Spanish Query",
+   "name": "SPANISH_QUERY",
+   "fulfillment": { "conversationName": "convo" },
+   "intent":
+   {
+    "name": "www.whereismybus.xyz.SPANISH_QUERY",
+    "parameters": [ {"name": "phrase", "type": "SchemaOrg_Text"}
+                  ],
+    "trigger": { "queryPatterns":
+                  [
+                   "translate $SchemaOrg_Text:phrase to spanish"
+                  ]
+               }
+   }
+  }
+
+ ],
+ "conversations":
+ {
+  "convo":
+  {
+   "name": "convo",
+   "url": "https://ae4d1e63.ngrok.io",
+   "fulfillmentApiVersion": 2
+  }
+ }
+}
