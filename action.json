@@ -16,40 +16,23 @@
    "fulfillment": { "conversationName": "convo" },
    "intent":
    {
-    "name": "www.whereismybus.xyz.FRENCH_QUERY",
+    "name": "FRENCH_QUERY",
     "parameters": [ {"name": "phrase", "type": "SchemaOrg_Text"}
                   ],
     "trigger": { "queryPatterns":
                   [
-                   "translate $SchemaOrg_Text:phrase to french"
-                  ]
-               }
-   }
-  },
-  {
-   "description": "Spanish Query",
-   "name": "SPANISH_QUERY",
-   "fulfillment": { "conversationName": "convo" },
-   "intent":
-   {
-    "name": "www.whereismybus.xyz.SPANISH_QUERY",
-    "parameters": [ {"name": "phrase", "type": "SchemaOrg_Text"}
-                  ],
-    "trigger": { "queryPatterns":
-                  [
-                   "translate $SchemaOrg_Text:phrase to spanish"
+                   "translate to French $SchemaOrg_Text:phrase"
                   ]
                }
    }
   }
-
  ],
  "conversations":
  {
   "convo":
   {
    "name": "convo",
-   "url": "https://ae4d1e63.ngrok.io",
+   "url": "https://4f1a7160.ngrok.io",
    "fulfillmentApiVersion": 2
   }
  }
