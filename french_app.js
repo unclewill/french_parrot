@@ -11,7 +11,7 @@ var express = require('express');
 var expressApp = express();
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
-var SCHEDULE_QUERY = 'your_domain_goes_here.SCHEDULE_QUERY';
+var FRENCH_QUERY = 'FRENCH_QUERY';
 
 function handlePost(request, response)
 {
@@ -24,7 +24,7 @@ function handlePost(request, response)
  // Our intent to handler mapping
 
  actions = new Map();
- actions.set(SCHEDULE_QUERY,           queryIntent);
+ actions.set(FRENCH_QUERY,             queryIntent);
  actions.set(app.StandardIntents.MAIN, mainIntent);
  actions.set(app.StandardIntents.TEXT, textIntent);
  app.handleRequest(actions);
@@ -40,15 +40,19 @@ function handlePost(request, response)
 
  function queryIntent(app)
  {
+  return doTranslation(app.getRawInput(), true);
  }
 
  // Handles the text intent
 
  function textIntent(app)
  {
-  var text, query, get, cb;
+  return doTranslation(app.getRawInput(), false);
+ }
 
-  text = app.getRawInput() || '';
+ function doTranslation(text, oneShot)
+ {
+  var cb, query, get;
 
   query = {};
   query.key = process.env.YANDEX;
@@ -63,6 +67,7 @@ function handlePost(request, response)
   cb = new Callback();
   cb.text = text;
   cb.app = app;
+  cb.oneShot = oneShot;
   cb.request = request;
   cb.response = response;
 
@@ -119,9 +124,13 @@ function handlePost(request, response)
 
    rich = cb.app.buildRichResponse();
    rich.addBasicCard(card);
-   rich.addSimpleResponse(cb.text)
+   rich.addSimpleResponse(cb.text);
 
-   cb.app.ask(rich);
+   if ( cb.oneShot )
+    cb.app.tell(rich);
+
+   else
+    cb.app.ask(rich);
   }
 
   cb.fulfill(foreign);
