@@ -1,1 +1,1 @@
-gactions update --action_package action.json --project parrot-ac1f3
+gactions update --action_package action.json --project <your_project_goes_here>
