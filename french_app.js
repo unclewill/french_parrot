@@ -40,7 +40,10 @@ function handlePost(request, response)
 
  function queryIntent(app)
  {
-  return doTranslation(app.getRawInput(), true);
+  var text;
+
+  text = app.getArgument('phrase');
+  return doTranslation(text, true);
  }
 
  // Handles the text intent
